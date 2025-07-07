@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>计量器具</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<main class="main-content">
+
+  <section class="profile">
+
+    <img src="https://github.com/mingxi001/jiliangqiju/blob/main/_cgi-bin_mmwebwx-bin_webwxgetmsgimg__%26MsgID%3D6508366515544376741%26skey%3D%40crypt_347b8e98_daee1c1b1c7a51aa742c2f5657b4ec85%26mmweb_appid%3Dwx_webfilehelper.jpg" alt="领用信息登记二维码">
+
+    <h2>计量柜密码</h2>
+
+    <p>2号厂房| 计量柜密码为5140</p>
+
+    <p>10号厂房| 计量柜密码为625</p>
+
+  </section>
+
+  <section class="about">
+
+    <h3>注意事项</h3>
+
+    <p>领用前须扫码登记相关信息，领用后须妥善保管，无使用需求及时归还。谢谢！</p>
+
+  </section>
+
+</main>
+<style>
+     /*移动设备默认样式 */
+  .profile img{
+    width: 150px;
+      height: 150px;
+  }
+  
+  /* 平板电脑样式 */
+  @media(min-width: 768px){
+    .profile img{
+    width: 200px;
+      height: 200px;
+     }
+  }
+  /* 电脑桌面样式  */
+  @media(min-width: 992px){
+    main{
+      display: grid;
+      grid-template-columns: 3fr1fr;
+      gap: 40px;
+    }
+  }
+</style>
+<style>
+
+    .main-content {
+
+        max-width: 800px;
+
+        margin: 0 auto;
+
+        padding: 20px;
+
+    }
+
+    .profile {
+
+        text-align: center;
+
+        margin-bottom: 30px;
+
+    }
+
+    .profile img {
+
+        width: 200px;
+
+        height: 200px;
+
+        border-radius: 0%;
+
+        border: 5px solid #f8f9fa;
+
+    }
+
+    .about {
+
+        line-height: 1.4;
+
+        color: #666;
+
+    }
+
+</style>
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>网页内容子部分分入口 - 原生实现</title>
+  <style>
+    /* 基础样式重置 */
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Arial', sans-serif; }
+    
+    /* 导航样式 */
+    .nav-container {
+      display: flex;
+      justify-content: space-around;
+      background-color: #f5f5f5;
+      padding: 15px 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 1px solid #ddd;
+    }
+    .nav-item {
+      padding: 8px 15px;
+      text-decoration: none;
+      color: #333;
+      border-radius: 4px;
+      transition: background-color 0.3s;
+    }
+    .nav-item:hover {
+      background-color: #e0e0e0;
+    }
+    .nav-item.active {
+      background-color: #4a90e2;
+      color: white;
+    }
+    
+    /* 内容区域样式 */
+    .content-container {
+      max-width: 1200px;
+      margin: 20px auto;
+      padding: 0 20px;
+    }
+    .section {
+      margin-bottom: 40px;
+      padding: 20px;
+      border: 1px solid #eee;
+      border-radius: 6px;
+      background-color: white;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+    .section h2 {
+      color: #333;
+      margin-bottom: 15px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid #f0f0f0;
+    }
+    
+    /* 选项卡样式 */
+    .tab-container {
+      margin-top: 30px;
+    }
+    .tab-buttons {
+      display: flex;
+      margin-bottom: 20px;
+      border-bottom: 1px solid #ddd;
+    }
+    .tab-btn {
+      padding: 10px 15px;
+      border: none;
+      background-color: transparent;
+      cursor: pointer;
+      font-weight: 500;
+      transition: background-color 0.3s;
+      border-bottom: 2px solid transparent;
+    }
+    .tab-btn.active {
+      border-bottom-color: #4a90e2;
+      color: #4a90e2;
+    }
+    .tab-content {
+      border: 1px solid #eee;
+      border-top: none;
+      border-radius: 0 0 6px 6px;
+    }
+    .tab-pane {
+      padding: 20px;
+      display: none;
+    }
+    .tab-pane.active {
+      display: block;
+    }
+    
+    /* 动态加载样式 */
+    .dynamic-container {
+      margin-top: 30px;
+      padding: 20px;
+      border: 1px dashed #ddd;
+      border-radius: 6px;
+      text-align: center;
+    }
+    .load-btn {
+      padding: 10px 20px;
+      background-color: #4a90e2;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s;
+    }
+    .load-btn:hover {
+      background-color: #357abd;
+    }
+    .dynamic-content {
+      margin-top: 20px;
+      min-height: 100px;
+      padding: 20px;
+      background-color: #f9f9f9;
+      border-radius: 4px;
+      display: none;
+    }
+    
+    /* 响应式设计 */
+    @media (max-width: 768px) {
+      .nav-container {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .nav-item {
+        width: 100%;
+        text-align: center;
+        margin-bottom: 5px;
+      }
+      .tab-buttons {
+        flex-direction: column;
+      }
+      .tab-btn {
+        width: 100%;
+        text-align: center;
+        border-bottom: none;
+        border-right: 2px solid transparent;
+      }
+      .tab-btn.active {
+        border-right-color: #4a90e2;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- 页面导航 -->
+  <div class="nav-container">
+    <a href="#section1" class="nav-item" id="nav-section1">计量器具的定义</a>
+    <a href="#section2" class="nav-item" id="nav-section2">计量器具的分类</a>
+    <a href="#tabs" class="nav-item" id="nav-tabs">各区域计量柜密钥</a>
+    <a href="#dynamic" class="nav-item" id="nav-dynamic">动态加载内容</a>
+  </div>
+  <!-- 内容容器 -->
+  <div class="content-container">
+    <!-- 计量器具-->
+    <section id="section1" class="section">
+      <h2>计量器具的定义</h2>
+      <p>计量器具是指能用以直接或间接测出被测对象量值的装置、仪器仪表、量具和用于统一量值的标准物质。它具有准确性、统一性、溯源性和法制性等特点，广泛应用于工业、农业、科研、医疗等各个领域，是确保量值准确可靠的重要工具。</p>
+    </section>
+    <!-- 计量器具的分类 -->
+    <section id="section2" class="section">
+      <h2>计量器具的分类</h2>
+      <p>常见的计量器具可按用途分为以下几类</p><br>
+      <p>长度计量器具</p><br>
+<p>刻度尺：如直尺、卷尺，用于测量物体长度、宽度等。</p><br>
+<p>游标卡尺：精准测量物体的内径、外径和深度，精度可达0.02毫米。</p><br>
+<p>千分尺：也叫螺旋测微器，用于高精度测量，精度达0.01毫米，常用于机械加工等领域。</p><br>
+
+<p>质量计量器具</p><br>
+<P>天平：包括电子天平和机械天平，用于称量物体质量，精度从克到毫克级不等。</P><br>
+<p>砝码：配合天平使用，作为质量计量的标准器。</p><br>
+
+<p>时间计量器具</p><br>
+<p>钟表：如机械表、电子表，用于计量时间。</p><br>
+<p>秒表：精准测量短时间段，常用于体育比赛、实验等场景。</p><br>
+
+<p>温度计量器具</p><br>
+
+<p>温度计：包括水银温度计、电子温度计，用于测量温度，常见于实验室、医疗、日常生活中。<p><br>
+
+<p>体积/容量计量器具</p><br>
+
+<p>量筒、量杯：用于测量液体体积，实验室常用。</p><br>
+<p>容量瓶：精准配制一定体积的溶液，属于高精度计量器具。</p><br>
+
+<p>力学计量器具</p><br>
+
+<p>弹簧测力计：测量力的大小，如拉力、重力等。</p><br>
+<p>压力表：测量气体或液体的压力，常见于锅炉、汽车胎压监测等场景。</p><br>
+
+<p>电学计量器具</p><br>
+
+<p>万用表：可测量电压、电流、电阻等电学参数，电工常用工具。</p><br>
+<p>电流表、电压表：专门用于测量电路中的电流和电压值。</p><br>
+
+<p>这些器具通过标准化设计，能准确复现和传递物理量的单位，满足生产、科研、生活等多场景的计量需求。</p><br>
+<p>未选择任何文件</p>
+    </section>
+    <!-- 选项卡内容 -->
+    <section id="tabs" class="section tab-container">
+      <h2>选项卡式分入口</h2>
+      <div class="tab-buttons">
+        <button class="tab-btn active" data-tab="tab1">2号计量柜</button>
+        <button class="tab-btn" data-tab="tab2">10号计量柜</button>
+        <button class="tab-btn" data-tab="tab3">19号计量柜</button>
+      </div>
+      <div class="tab-content">
+        <div class="tab-pane active" id="tab1">
+          <h3>2号计量柜密钥</h3>
+          <p>密码锁输入5140即可打开</p>
+          <p>注意：领用前须扫码登记相关信息，领用后须妥善保管，无使用需求及时归还。谢谢！</p>
+        </div>
+        <div class="tab-pane" id="tab2">
+          <h3>10号计量柜密钥</h3>
+          <p>密码锁输入625即可打开</p>
+          <p>注意：领用前须扫码登记相关信息，领用后须妥善保管，无使用需求及时归还。谢谢！</p>
+        </div>
+        <div class="tab-pane" id="tab3">
+          <h3>19号计量柜密钥</h3>
+          <p>密码锁输入0000即可打开</p>
+          <p>注意：领用前须扫码登记相关信息，领用后须妥善保管，无使用需求及时归还。谢谢！</p>
+        </div>
+      </div>
+    </section>
+    <!-- 动态加载内容 -->
+    <section id="dynamic" class="section dynamic-container">
+      <h2>动态加载分入口</h2>
+      <button id="load-content-btn" class="load-btn">加载动态内容</button>
+      <div id="dynamic-content" class="dynamic-content">
+        <h3>动态加载的内容区域</h3>
+        <p>等待设置内容。</p>
+        <p>动态分入口展示用户个性化信息、实时数据展示等。</p>
+      </div>
+    </section>
+  </div>
+  <script>
+    // 1. 锚点导航平滑滚动
+    document.querySelectorAll('.nav-item').forEach(navItem => {
+      navItem.addEventListener('click', function() {
+        // 移除所有导航项的激活状态
+        document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
+        // 添加当前导航项的激活状态
+        this.classList.add('active');
+        
+        const targetId = this.getAttribute('href');
+        const targetElement = document.querySelector(targetId);
+        
+        if (targetElement) {
+          targetElement.scrollIntoView({
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+    // 2. 选项卡切换功能
+    const tabButtons = document.querySelectorAll('.tab-btn');
+    const tabContents = document.querySelectorAll('.tab-pane');
+    tabButtons.forEach(button => {
+      button.addEventListener('click', function() {
+        // 移除所有按钮和内容的激活状态
+        tabButtons.forEach(btn => btn.classList.remove('active'));
+        tabContents.forEach(content => content.classList.remove('active'));
+        
+        // 添加当前按钮和对应内容的激活状态
+        this.classList.add('active');
+        const contentId = this.dataset.tab;
+        document.getElementById(contentId).classList.add('active');
+      });
+    });
+    // 3. 动态内容加载功能
+    document.getElementById('load-content-btn').addEventListener('click', function() {
+      this.disabled = true;
+      this.innerHTML = '<span>加载中...</span>';
+      
+      // 模拟API请求延迟
+      setTimeout(() => {
+        const dynamicContent = document.getElementById('dynamic-content');
+        dynamicContent.style.display = 'block';
+        
+        // 恢复按钮状态
+        this.disabled = false;
+        this.innerHTML = '加载动态内容';
+      }, 1500);
+    });
+    // 4. 滚动时更新导航激活状态
+    window.addEventListener('scroll', function() {
+      const scrollPosition = window.scrollY + 100;
+      
+      document.querySelectorAll('.section').forEach(section => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.offsetHeight;
+        const sectionId = section.getAttribute('id');
+        const navItem = document.getElementById(`nav-${sectionId}`);
+        
+        if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+          // 移除所有导航项的激活状态
+          document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
+          // 添加当前区域对应的导航项激活状态
+          if (navItem) navItem.classList.add('active');
+        }
+      });
+    });
+  </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+<style>
+
+    .main-header {
+
+        background-color: #f8f9fa;
+
+        padding: 20px;
+
+        text-align: center;
+
+    }
+
+    nav ul {
+
+        list-style: none;
+
+        padding: 0;
+
+    }
+
+    nav ul li {
+
+        display: inline-block;
+
+        margin: 0 10px;
+
+    }
+
+    nav a {
+
+        text-decoration: none;
+
+        color: #333;
+
+        font-weight: bold;
+
+    }
+
+    nav a:hover {
+
+        color: #007bff;
+
+    }
+
+</style>
+<footer class="main-footer">
+
+    <div class="contact-info">
+
+        <h3>联系我</h3>
+
+        <p><i class="fas fa-envelope"></i> 微信私聊</p>
+
+        <p><i class="fas fa-phone"></i> +8617724675804</p>
+
+        <p><i class="fas fa-map-marker-alt"></i> 地址没填</p>
+
+    </div>
+
+    <div class="social-links">
+
+        <a href="#"><i class="fab fa-github"></i></a>
+
+        <a href="#"><i class="fab fa-twitter"></i></a>
+
+        <a href="#"><i class="fab fa-linkedin"></i></a>
+
+    </div>
+
+    <p>&copy; 2025 John Doe. 保留所有权利。</p>
+
+</footer>
+<style>
+
+    .main-footer {
+
+        background-color: #f8f9fa;
+
+        padding: 40px 20px;
+
+        text-align: center;
+
+        margin-top: 50px;
+
+    }
+
+    .contact-info {
+
+        margin-bottom: 30px;
+
+    }
+
+    .contact-info p {
+
+        margin: 10px 0;
+
+        color: #666;
+
+    }
+
+    .social-links a {
+
+        display: inline-block;
+
+        width: 40px;
+
+        height: 40px;
+
+        background-color: #fff;
+
+        border-radius: 0%;
+
+        line-height: 40px;
+
+        margin: 0 5px;
+
+        color: #333;
+
+        text-decoration: none;
+
+        transition: background-color 0.3s;
+
+    }
+
+    .social-links a:hover {
+
+        background-color: #007bff;
+
+        color: #fff;
+
+    }
+
+    .main-footer p {
+
+        color: #999;
+
+        margin-top: 20px;
+
+    }
+
+</style>
